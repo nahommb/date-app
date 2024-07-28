@@ -13,10 +13,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+
+  bool isInit = true;
+  var data ;
+  void didChangeDependencies() async{
+    // TODO: implement didChangeDependencies
+    if(isInit){
+      data = Provider.of<Data>(context);
+    }
+    isInit = false;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<Data>(context);
-    data.getUser();
+    // final data = Provider.of<Data>(context);
+    // data.getUser();
     return DefaultTabController(
         length: 2,
         child:Scaffold(
@@ -45,8 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
                  return data.getUser();
                },
                 child: FutureBuilder(
+                  future: data.getUser(),
                   builder: (context,snapshot){
                     if(data.allPosts.isEmpty){
+                      print(data.allPosts);
                       return Center(child: CircularProgressIndicator());
                     }
                     return Posts();

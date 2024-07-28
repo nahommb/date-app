@@ -16,20 +16,20 @@ class _PostsState extends State<Posts> {
   final auth = FirebaseAuth.instance;
 
  // final databaseReference = FirebaseDatabase.instance.ref('https://date-app-64dea-default-rtdb.firebaseio.com/');
-  bool isInit = true;
-  var data ;
-  void didChangeDependencies() async{
-    // TODO: implement didChangeDependencies
-    if(isInit){
-       data = Provider.of<Data>(context);
-    }
-    isInit = false;
-    super.didChangeDependencies();
-  }
+ //  bool isInit = true;
+ //  var data ;
+ //  void didChangeDependencies() async{
+ //    // TODO: implement didChangeDependencies
+ //    if(isInit){
+ //       data = Provider.of<Data>(context);
+ //    }
+ //    isInit = false;
+ //    super.didChangeDependencies();
+ //  }
 
   @override
   Widget build(BuildContext context) {
-
+    final data = Provider.of<Data>(context);
     return ListView.builder(
       itemCount: data.allPosts.length,
       itemBuilder: (context,index)=> Column(
@@ -37,9 +37,24 @@ class _PostsState extends State<Posts> {
           Container(
             //height: 300,
             width: double.infinity,
-            color: Colors.pink,
+            //color: Colors.pink,
             margin: EdgeInsets.all(8),
-            child: Image.network(data.allPosts[index]['imageUrl'],fit: BoxFit.cover,),
+            child: Image.network(data.allPosts[index]['imageUrl'],fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 1,
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                          : null,
+                    ),
+                  );
+                }
+              },
+            ),
           ),
           Container(
            // height: 30,
