@@ -66,7 +66,7 @@ class Data with ChangeNotifier{
 
 
   Future <void> postUser(name,tg_username,ig_username,address,phone_number,imageUrl) async{
-    final url = Uri.parse(postUserApi);
+    final url = Uri.parse(UserApi);
 
     http.post(url,body: json.encode({
       'name':name,
@@ -78,7 +78,7 @@ class Data with ChangeNotifier{
     }),);
   }
   Future <void> getUser() async{
-    final url = Uri.parse(postUserApi);
+    final url = Uri.parse(UserApi);
 
     http.Response response = await http.get(url);
 
@@ -109,7 +109,7 @@ class Data with ChangeNotifier{
 
 
   Future <void> postAnnouncement(announcementImage,description) async{
-    final url = Uri.parse(postAnnouncementApi);
+    final url = Uri.parse(AnnouncementApi);
 
     http.Response response = await http.post(url,body:json.encode({
       'imageUrl':announcementImage,
@@ -120,7 +120,7 @@ class Data with ChangeNotifier{
 
   }
   Future <void> getAnnouncement() async{
-    final url = Uri.parse(postAnnouncementApi);
+    final url = Uri.parse(AnnouncementApi);
 
     http.Response response = await http.get(url);
 
