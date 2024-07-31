@@ -1,6 +1,7 @@
 import 'package:date_app/provider/data.dart';
 import 'package:date_app/screen/admin_screen.dart';
 import 'package:date_app/screen/annoce_admin_screen.dart';
+import 'package:date_app/widget/annoouncement.dart';
 import 'package:date_app/widget/posts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +73,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 )
             ),
-            Container(
-
+            RefreshIndicator(
+                onRefresh: (){
+                  return data.getAnnouncement();
+                },
+                child: FutureBuilder(
+                  future: data.getAnnouncement(),
+                  builder: (context,snapshot){
+                    if(data.allAnnouncement.isEmpty){
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    return Announcement();
+                  },
+                )
             )
           ],
           )

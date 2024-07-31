@@ -57,35 +57,46 @@ class _PostsState extends State<Posts> {
             ),
           ),
           Container(
-           // height: 30,
+            height: 60,
             width: double.infinity,
              color: Colors.black,
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   children: [
-                    Text('Address'),
+                    Text('Name',style: TextStyle(color: Colors.white),),
+                    Text(data.allPosts[index]['name'],style: TextStyle(color: Colors.lightGreen)),
+                  ],
+                ),
+                SizedBox(width: 10,),
+                Column(
+                  children: [
+                    Text('Address',style: TextStyle(color: Colors.white),),
                     Text(data.allPosts[index]['address'],style: TextStyle(color: Colors.lightGreen)),
                   ],
                 ),
+                SizedBox(width: 10,),
                 Column(
                   children: [
-                    Text('Telegram'),
+                    Text('Telegram',style: TextStyle(color: Colors.white),),
                     Text(data.allPosts[index]['tg_username'],style: TextStyle(color: Colors.lightGreen)),
                   ],
                 ),
+                SizedBox(width: 10,),
                 Column(
                   children: [
-                    Text('Instagram'),
+                    Text('Instagram',style: TextStyle(color: Colors.white),),
                     Text(data.allPosts[index]['ig_username'],style: TextStyle(color: Colors.lightGreen)),
                   ],
                 ),
+                SizedBox(width: 10,),
                 Column(
                   children: [
-                    Text('Phone Number'),
+                    Text('Phone Number',style: TextStyle(color: Colors.white),),
                     Text(data.allPosts[index]['phone_number'],style: TextStyle(color: Colors.lightGreen),),
                   ],
                 ),

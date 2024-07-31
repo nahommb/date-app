@@ -17,7 +17,10 @@ class Data with ChangeNotifier{
     return [..._allPosts];
 }
 
-
+  List<dynamic> _allAnnouncement = [];
+  List<dynamic> get allAnnouncement {
+    return [..._allAnnouncement];
+  }
 
   Future<void> getImage(context) async{
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery,imageQuality: 90);
@@ -112,6 +115,28 @@ class Data with ChangeNotifier{
       'description':description
     }));
 
+
+
+  }
+  Future <void> getAnnouncement() async{
+    final url = Uri.parse('https://date-app-64dea-default-rtdb.firebaseio.com/announcement.json');
+
+    http.Response response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> bd = jsonDecode(response.body);
+
+      _allAnnouncement.clear(); // Clear previous posts
+
+      // Iterate through the map and add each post to the list
+      List<dynamic> recievedData = [];
+      bd.forEach((key, value) {
+        //print(value);
+        recievedData.add(value);
+      });
+      _allAnnouncement = recievedData.reversed.toList();
+      // print(allPosts);
+    }
 
 
   }

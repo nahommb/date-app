@@ -30,6 +30,7 @@ class _MyAppState extends State<MyApp> {
       ChangeNotifierProvider(create: (context)=>Data()),
     ],
     child: MaterialApp(
+        debugShowCheckedModeBanner: false,
           home: HomeScreen(),
       routes: {
         AdminScreen.routName:(context)=>AdminScreen(),
