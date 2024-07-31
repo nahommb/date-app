@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:date_app/module/constants.dart';
 import 'package:date_app/screen/admin_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -65,7 +66,7 @@ class Data with ChangeNotifier{
 
 
   Future <void> postUser(name,tg_username,ig_username,address,phone_number,imageUrl) async{
-    final url = Uri.parse('https://date-app-64dea-default-rtdb.firebaseio.com/user.json');
+    final url = Uri.parse(postUserApi);
 
     http.post(url,body: json.encode({
       'name':name,
@@ -77,7 +78,7 @@ class Data with ChangeNotifier{
     }),);
   }
   Future <void> getUser() async{
-    final url = Uri.parse('https://date-app-64dea-default-rtdb.firebaseio.com/user.json');
+    final url = Uri.parse(postUserApi);
 
     http.Response response = await http.get(url);
 
@@ -108,7 +109,7 @@ class Data with ChangeNotifier{
 
 
   Future <void> postAnnouncement(announcementImage,description) async{
-    final url = Uri.parse('https://date-app-64dea-default-rtdb.firebaseio.com/announcement.json');
+    final url = Uri.parse(postAnnouncementApi);
 
     http.Response response = await http.post(url,body:json.encode({
       'imageUrl':announcementImage,
@@ -119,7 +120,7 @@ class Data with ChangeNotifier{
 
   }
   Future <void> getAnnouncement() async{
-    final url = Uri.parse('https://date-app-64dea-default-rtdb.firebaseio.com/announcement.json');
+    final url = Uri.parse(postAnnouncementApi);
 
     http.Response response = await http.get(url);
 
