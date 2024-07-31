@@ -1,5 +1,6 @@
 import 'package:date_app/provider/data.dart';
 import 'package:date_app/screen/admin_screen.dart';
+import 'package:date_app/screen/annoce_admin_screen.dart';
 import 'package:date_app/widget/posts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.only(top: 80),
               child: Column(
                 children: [
-                  ListTile(title: Text('Admin'),onTap: (){
+                  ListTile(title: Text('Post Photo'),onTap: (){
                    data.getImage(context);
+                  },),
+                  ListTile(title: Text('Post Announcement'),onTap: (){
+                    Navigator.pushNamed(context, PostAnnouncement.routName);
                   },)
                 ],
               ),

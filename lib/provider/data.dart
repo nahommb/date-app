@@ -11,6 +11,7 @@ class Data with ChangeNotifier{
   File? image;
   final _picker = ImagePicker();
 
+
   List<dynamic>_allPosts = [];
   List<dynamic> get allPosts {
     return [..._allPosts];
@@ -38,6 +39,26 @@ class Data with ChangeNotifier{
 
   }
 
+
+  Future<void> getAnnouncementImage(context) async{
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery,imageQuality: 90);
+    if(pickedFile!=null){
+      image = File(pickedFile.path);
+
+      print('leeeeeeee $image');
+    }
+    else{
+      print('no image picked');
+    }
+
+    if(image!=null){
+      print('not null');
+
+
+      //Navigator.pushNamed(context, AdminScreen.routName,arguments: {'imageUrl':image});
+
+    }
+  }
 
 
   Future <void> postUser(name,tg_username,ig_username,address,phone_number,imageUrl) async{
@@ -81,6 +102,17 @@ class Data with ChangeNotifier{
 
     return imageUrl;
   }
-  
-  
+
+
+  Future <void> postAnnouncement(announcementImage,description) async{
+    final url = Uri.parse('https://date-app-64dea-default-rtdb.firebaseio.com/announcement.json');
+
+    http.Response response = await http.post(url,body:json.encode({
+      'imageUrl':announcementImage,
+      'description':description
+    }));
+
+
+
+  }
 }

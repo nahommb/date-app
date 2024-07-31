@@ -1,5 +1,6 @@
 import 'package:date_app/provider/data.dart';
 import 'package:date_app/screen/admin_screen.dart';
+import 'package:date_app/screen/annoce_admin_screen.dart';
 import 'package:date_app/screen/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,7 @@ class _MyAppState extends State<MyApp> {
           home: HomeScreen(),
       routes: {
         AdminScreen.routName:(context)=>AdminScreen(),
+        PostAnnouncement.routName:(context)=>PostAnnouncement(),
       },
     ),);
   }

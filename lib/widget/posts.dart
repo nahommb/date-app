@@ -59,7 +59,7 @@ class _PostsState extends State<Posts> {
           Container(
            // height: 30,
             width: double.infinity,
-            // color: Colors.purple,
+             color: Colors.black,
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(8),
             child: Row(
