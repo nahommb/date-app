@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:intl/intl.dart';
 
 class Data with ChangeNotifier{
 
@@ -110,10 +111,11 @@ class Data with ChangeNotifier{
 
   Future <void> postAnnouncement(announcementImage,description) async{
     final url = Uri.parse(AnnouncementApi);
-
+    String formattedDate = DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now().toLocal());
     http.Response response = await http.post(url,body:json.encode({
       'imageUrl':announcementImage,
-      'description':description
+      'description':description,
+      'date':formattedDate,
     }));
 
 

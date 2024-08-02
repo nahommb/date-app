@@ -14,6 +14,8 @@ class PostAnnouncement extends StatefulWidget {
 class _PostAnnouncementState extends State<PostAnnouncement> {
 
   var description;
+
+
   @override
   Widget build(BuildContext context) {
     final data = Provider.of<Data>(context);
@@ -52,7 +54,10 @@ class _PostAnnouncementState extends State<PostAnnouncement> {
             ElevatedButton(onPressed: ()async{
               final image = await data.postImage(data.image);
               print(image);
-              data.postAnnouncement(image, description);
+              if(image!=null || description!=null){
+                data.postAnnouncement(image, description);
+              }
+
             }, child: Text('Submit'))
           ],
         ),
